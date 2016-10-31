@@ -11,17 +11,35 @@ public class MenuScript : MonoBehaviour {
 	public Button creditsText;
 	public Button exitText;
 
+	public Image quitScreen;
+
+	public Transform mainCamera;
+
 
 	// Use this for initialization
 	void Start () {
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 
 		startText = startText.GetComponent<Button> ();
-		optionsText = startText.GetComponent<Button> ();
-		creditsText = startText.GetComponent<Button> ();
-		exitText = startText.GetComponent<Button> ();
+		optionsText = optionsText.GetComponent<Button> ();
+		creditsText = creditsText.GetComponent<Button> ();
+		exitText = exitText.GetComponent<Button> ();
+
+		quitScreen = quitScreen.GetComponent<Image> ();
+
+		mainCamera = mainCamera.GetComponent<Transform> ();
 
 		quitMenu.enabled = false;
+	}
+
+	void Update() {
+		if (quitMenu.enabled) {
+			if (Input.GetMouseButtonDown (0)) {
+				if (!quitScreen.rectTransform.rect.Contains(Input.mousePosition - mainCamera.position)) {
+					NoPress ();
+				}
+			}
+		}
 	}
 		
 	public void PlayPress() {
