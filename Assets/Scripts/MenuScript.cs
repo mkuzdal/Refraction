@@ -4,42 +4,61 @@ using System.Collections;
 
 public class MenuScript : MonoBehaviour {
 
-	public Canvas quitMenu;
+	// Current Menu:
+	public Canvas mainMenu;
 
-	public Button startText;
-	public Button optionsText;
-	public Button creditsText;
-	public Button exitText;
+	// Super Menus:
+	// NONE
 
-	public Image quitScreen;
+	// Sub Menus:
+	public Canvas playMenu;
+	public Canvas optionsMenu;
+	public Canvas exitMenu;
+	public Canvas creditsMenu;
 
-	public Transform mainCamera;
+	// Interactables:
+	public Button startButton;
+	public Button optionsButton;
+	public Button creditsButton;
+	public Button exitButton;
 
-
-	// Use this for initialization
 	void Start () {
-		quitMenu = quitMenu.GetComponent<Canvas> ();
+		// Get all menu screens:
+		mainMenu = mainMenu.GetComponent<Canvas> ();
+		exitMenu = exitMenu.GetComponent<Canvas> ();
+		creditsMenu = creditsMenu.GetComponent<Canvas> ();
 
-		startText = startText.GetComponent<Button> ();
-		optionsText = optionsText.GetComponent<Button> ();
-		creditsText = creditsText.GetComponent<Button> ();
-		exitText = exitText.GetComponent<Button> ();
+		// Get all interactables:
+		startButton = startButton.GetComponent<Button> ();
+		optionsButton = optionsButton.GetComponent<Button> ();
+		creditsButton = creditsButton.GetComponent<Button> ();
+		exitButton = exitButton.GetComponent<Button> ();
 
-		quitScreen = quitScreen.GetComponent<Image> ();
+		mainMenu.enabled = true;
+	}
 
-		mainCamera = mainCamera.GetComponent<Transform> ();
+	public void Init () {
+		mainMenu.enabled = true;
 
-		quitMenu.enabled = false;
+		playMenu.enabled = false;
+		optionsMenu.enabled = false;
+		creditsMenu.enabled = false;
+		exitMenu.enabled = false;
+
+		startButton.enabled = true;
+		optionsButton.enabled = true;
+		creditsButton.enabled = true;
+		exitButton.enabled = true;
 	}
 
 	void Update() {
-		if (quitMenu.enabled) {
+		/*if (exitMenu.enabled) {
 			if (Input.GetMouseButtonDown (0)) {
-				if (!quitScreen.rectTransform.rect.Contains(Input.mousePosition - mainCamera.position)) {
+				if (!exitScreen.rectTransform.rect.Contains(Input.mousePosition - mainCamera.position)) {
 					NoPress ();
 				}
 			}
-		}
+		} */
 	}
 		
 	public void PlayPress() {
@@ -47,33 +66,19 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void OptionsPress() {
-		
+
 	}
 
 	public void CreditsPress() {
-
+		creditsMenu.GetComponent<CreditsScript> ().Init ();
 	}
 	
 	public void ExitPress() {
-		quitMenu.enabled = true;
+		exitMenu.GetComponent<ExitScript> ().Init ();
 
-		startText.enabled = false;
-		optionsText.enabled = false;
-		creditsText.enabled = false;
-		exitText.enabled = false;
+		startButton.enabled = false;
+		optionsButton.enabled = false;
+		creditsButton.enabled = false;
+		exitButton.enabled = false;
 	}
-
-	public void YesPress() {
-		Application.Quit ();
-	}
-
-	public void NoPress() {
-		quitMenu.enabled = false;
-
-		startText.enabled = true;
-		optionsText.enabled = true;
-		creditsText.enabled = true;
-		exitText.enabled = true;
-	}
-		
 }
