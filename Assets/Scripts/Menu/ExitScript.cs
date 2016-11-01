@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ExitScript : MonoBehaviour {
-
-	// Current Menu Screen:
+	
+	// Current Menu:
 	public Canvas exitMenu;
 
 	// Super Menus:
@@ -48,9 +48,11 @@ public class ExitScript : MonoBehaviour {
 	
 	public void YesPress () {
 		Application.Quit ();
+		Debug.Log ("QUIT");
 	}
 
 	public void NoPress () {
+		exitMenu.enabled = false;
 		mainMenu.GetComponent<MenuScript> ().Init ();
 	}
 }

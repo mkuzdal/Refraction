@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class MenuScript : MonoBehaviour {
-
+	
 	// Current Menu:
 	public Canvas mainMenu;
 
@@ -13,11 +13,11 @@ public class MenuScript : MonoBehaviour {
 	// Sub Menus:
 	public Canvas playMenu;
 	public Canvas optionsMenu;
-	public Canvas exitMenu;
 	public Canvas creditsMenu;
+	public Canvas exitMenu;
 
 	// Interactables:
-	public Button startButton;
+	public Button playButton;
 	public Button optionsButton;
 	public Button creditsButton;
 	public Button exitButton;
@@ -25,11 +25,14 @@ public class MenuScript : MonoBehaviour {
 	void Start () {
 		// Get all menu screens:
 		mainMenu = mainMenu.GetComponent<Canvas> ();
-		exitMenu = exitMenu.GetComponent<Canvas> ();
+
+		playMenu = playMenu.GetComponent<Canvas> ();
+		optionsMenu = optionsMenu.GetComponent<Canvas> ();
 		creditsMenu = creditsMenu.GetComponent<Canvas> ();
+		exitMenu = exitMenu.GetComponent<Canvas> ();
 
 		// Get all interactables:
-		startButton = startButton.GetComponent<Button> ();
+		playButton = playButton.GetComponent<Button> ();
 		optionsButton = optionsButton.GetComponent<Button> ();
 		creditsButton = creditsButton.GetComponent<Button> ();
 		exitButton = exitButton.GetComponent<Button> ();
@@ -45,20 +48,14 @@ public class MenuScript : MonoBehaviour {
 		creditsMenu.enabled = false;
 		exitMenu.enabled = false;
 
-		startButton.enabled = true;
+		playButton.enabled = true;
 		optionsButton.enabled = true;
 		creditsButton.enabled = true;
 		exitButton.enabled = true;
 	}
 
 	void Update() {
-		/*if (exitMenu.enabled) {
-			if (Input.GetMouseButtonDown (0)) {
-				if (!exitScreen.rectTransform.rect.Contains(Input.mousePosition - mainCamera.position)) {
-					NoPress ();
-				}
-			}
-		} */
+		// Nothing
 	}
 		
 	public void PlayPress() {
@@ -66,19 +63,23 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void OptionsPress() {
+		mainMenu.enabled = false;
 
+		optionsMenu.GetComponent<OptionsScript> ().Init ();
 	}
 
 	public void CreditsPress() {
+		mainMenu.enabled = false;
+
 		creditsMenu.GetComponent<CreditsScript> ().Init ();
 	}
 	
 	public void ExitPress() {
-		exitMenu.GetComponent<ExitScript> ().Init ();
-
-		startButton.enabled = false;
+		playButton.enabled = false;
 		optionsButton.enabled = false;
 		creditsButton.enabled = false;
 		exitButton.enabled = false;
+
+		exitMenu.GetComponent<ExitScript> ().Init ();
 	}
 }

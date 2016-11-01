@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CreditsScript : MonoBehaviour {
-
-	// Current Menu Screen:
+	
+	// Current Menu:
 	public Canvas creditsMenu;
 
 	// Super Menus:
@@ -29,7 +29,6 @@ public class CreditsScript : MonoBehaviour {
 
 	public void Init () {
 		creditsMenu.enabled = true;
-		mainMenu.enabled = false;
 	}
 
 	void Update () {
@@ -37,6 +36,7 @@ public class CreditsScript : MonoBehaviour {
 	}
 
 	public void BackPress () {
+		creditsMenu.enabled = false;
 		mainMenu.GetComponent<MenuScript> ().Init ();
 	}
 }
