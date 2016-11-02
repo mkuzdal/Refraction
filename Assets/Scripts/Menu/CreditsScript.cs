@@ -15,10 +15,12 @@ public class CreditsScript : MonoBehaviour {
 	**/
 
 	// Interactables:
+	public Text titleText;
 	public Text backButton;
 
 	void Start () {
 		// Get all interactables
+		titleText = titleText.GetComponent<Text> ();
 		backButton = backButton.GetComponent<Text> ();
 	}
 
@@ -31,12 +33,14 @@ public class CreditsScript : MonoBehaviour {
 	}
 
 	public void enableButtons() {
-		backButton.enabled = true;
+		/*titleText.enabled = true;
+		backButton.enabled = true;*/
 		backButton.gameObject.GetComponent<Button> ().enabled = true;
 	}
 
 	public void disableButtons() {
-		backButton.enabled = false;
+		/*titleText.enabled = false;
+		backButton.enabled = false;*/
 		backButton.gameObject.GetComponent<Button> ().enabled = false;
 	}
 }

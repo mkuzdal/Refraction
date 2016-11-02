@@ -15,6 +15,7 @@ public class ExitScript : MonoBehaviour {
 	**/
 
 	// Interactables:
+	public Text titleText;
 	public Text buttonYes;
 	public Text buttonNo;
 
@@ -23,6 +24,7 @@ public class ExitScript : MonoBehaviour {
 
 	void Start () {
 		// Get all interactables
+		titleText = titleText.GetComponent<Text> ();
 		buttonYes = buttonYes.GetComponent<Text> ();
 		buttonNo = buttonNo.GetComponent<Text> ();
 
@@ -47,15 +49,17 @@ public class ExitScript : MonoBehaviour {
 	}
 
 	public void enableButtons() {
+		/*titleText.enabled = true;
 		buttonYes.enabled = true;
-		buttonNo.enabled = true;
+		buttonNo.enabled = true;*/
 		buttonYes.gameObject.GetComponent<Button> ().enabled = true;
 		buttonNo.gameObject.GetComponent<Button> ().enabled = true;
 	}
 
 	public void disableButtons() {
+		/*titleText.enabled = false;
 		buttonYes.enabled = false;
-		buttonNo.enabled = false;
+		buttonNo.enabled = false;*/
 		buttonYes.gameObject.GetComponent<Button> ().enabled = false;
 		buttonNo.gameObject.GetComponent<Button> ().enabled = false;
 	}

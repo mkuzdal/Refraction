@@ -17,6 +17,7 @@ public class OptionsScript : MonoBehaviour {
 	**/
 
 	// Interactables:
+	public Text titleText;
 	public Text audioButton;
 	public Text graphicsButton;
 	public Text controlsButton;
@@ -24,6 +25,7 @@ public class OptionsScript : MonoBehaviour {
 
 	void Start () {
 		// Get all interactables
+		titleText = titleText.GetComponent<Text> ();
 		audioButton = audioButton.GetComponent<Text> ();
 		graphicsButton = graphicsButton.GetComponent<Text> ();
 		controlsButton = controlsButton.GetComponent<Text> ();
@@ -36,15 +38,15 @@ public class OptionsScript : MonoBehaviour {
 	}
 
 	public void AudioPress() {
-		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.AudioMenu, false, true);
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.AudioMenu, false, false);
 	}
 
 	public void GraphicsPress() {
-		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.GraphicsMenu, false, true);
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.GraphicsMenu, false, false);
 	}
 
 	public void ControlsPress() {
-		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.ControlsMenu, false, true);
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.ControlsMenu, false, false);
 	}
 
 	public void BackPress () {
@@ -52,10 +54,11 @@ public class OptionsScript : MonoBehaviour {
 	}
 
 	public void enableButtons() {
+		/*titleText.enabled = true;
 		audioButton.enabled = true;
 		graphicsButton.enabled = true;
 		controlsButton.enabled = true;
-		backButton.enabled = true;
+		backButton.enabled = true;*/
 		audioButton.gameObject.GetComponent<Button> ().enabled = true;
 		graphicsButton.gameObject.GetComponent<Button> ().enabled = true;
 		controlsButton.gameObject.GetComponent<Button> ().enabled = true;
@@ -63,10 +66,11 @@ public class OptionsScript : MonoBehaviour {
 	}
 
 	public void disableButtons() {
+		/*titleText.enabled = false;
 		audioButton.enabled = false;
 		graphicsButton.enabled = false;
 		controlsButton.enabled = false;
-		backButton.enabled = false;
+		backButton.enabled = false;*/
 		audioButton.gameObject.GetComponent<Button> ().enabled = false;
 		graphicsButton.gameObject.GetComponent<Button> ().enabled = false;
 		controlsButton.gameObject.GetComponent<Button> ().enabled = false;

@@ -18,6 +18,7 @@ public class MenuScript : MonoBehaviour {
 	**/
 
 	// Interactables:
+	public Text titleText;
 	public Text playButton;
 	public Text optionsButton;
 	public Text creditsButton;
@@ -25,6 +26,7 @@ public class MenuScript : MonoBehaviour {
 
 	void Start () {
 		// Get all interactables:
+		titleText = titleText.GetComponent<Text> ();
 		playButton = playButton.GetComponent<Text> ();
 		optionsButton = optionsButton.GetComponent<Text> ();
 		creditsButton = creditsButton.GetComponent<Text> ();
@@ -52,10 +54,11 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void enableButtons() {
+		/*titleText.enabled = true;
 		playButton.enabled = true;
 		optionsButton.enabled = true;
 		creditsButton.enabled = true;
-		exitButton.enabled = true;
+		exitButton.enabled = true;*/
 		playButton.gameObject.GetComponent<Button> ().enabled = true;
 		optionsButton.gameObject.GetComponent<Button> ().enabled = true;
 		creditsButton.gameObject.GetComponent<Button> ().enabled = true;
@@ -63,10 +66,11 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void disableButtons() {
+		/*titleText.enabled = false;
 		playButton.enabled = false;
 		optionsButton.enabled = false;
 		creditsButton.enabled = false;
-		exitButton.enabled = false;
+		exitButton.enabled = false;*/
 		playButton.gameObject.GetComponent<Button> ().enabled = false;
 		optionsButton.gameObject.GetComponent<Button> ().enabled = false;
 		creditsButton.gameObject.GetComponent<Button> ().enabled = false;

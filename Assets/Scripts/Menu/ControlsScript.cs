@@ -15,6 +15,7 @@ public class ControlsScript : MonoBehaviour {
 	**/
 
 	// Interactables:
+	public Text titleText;
 	public Text backButton;
 
 	public Image screen;
@@ -22,6 +23,7 @@ public class ControlsScript : MonoBehaviour {
 
 	void Start () {
 		// Get all interactables
+		titleText = titleText.GetComponent<Text> ();
 		backButton = backButton.GetComponent<Text> ();
 
 		screen = screen.GetComponent<Image> ();
@@ -33,16 +35,18 @@ public class ControlsScript : MonoBehaviour {
 	}
 
 	public void BackPress () {
-		MenuManager.ChangeMenu ((int)MenuManager.Menus.ControlsMenu, (int)MenuManager.Menus.OptionsMenu, true, false);
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.ControlsMenu, (int)MenuManager.Menus.OptionsMenu, false, false);
 	}
 
 	public void enableButtons() {
-		backButton.enabled = true;
+		/*titleText.enabled = true;
+		backButton.enabled = true;*/
 		backButton.gameObject.GetComponent<Button> ().enabled = true;
 	}
 
 	public void disableButtons() {
-		backButton.enabled = false;
+		/*titleText.enabled = false;
+		backButton.enabled = false;*/
 		backButton.gameObject.GetComponent<Button> ().enabled = false;
 	}
 }
