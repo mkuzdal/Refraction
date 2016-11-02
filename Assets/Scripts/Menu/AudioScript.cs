@@ -3,38 +3,29 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class AudioScript : MonoBehaviour {
+	/**
+		Current Menu:
+		audioMenu
 
-	// Current Menu:
-	public Canvas audioMenu;
+		Super Menus:
+		optionsMenu
 
-	// Super Menus:
-	public Canvas optionsMenu;
-
-	// Sub Menus:
-	// NONE
+		Sub Menus:
+		NONE
+	**/
 
 	// Interactables:
-	public Button backButton;
+	public Text backButton;
 
 	public Image screen;
 	public Transform camera;
 
 	void Start () {
-		// Get all menu screens
-		audioMenu = audioMenu.GetComponent<Canvas> ();
-		optionsMenu = optionsMenu.GetComponent<Canvas> ();
-
 		// Get all interactables
-		backButton = backButton.GetComponent<Button> ();
+		backButton = backButton.GetComponent<Text> ();
 
 		screen = screen.GetComponent<Image> ();
 		camera = camera.GetComponent<Transform> ();
-
-		audioMenu.enabled = false;
-	}
-
-	public void Init () {
-		audioMenu.enabled = true;
 	}
 
 	void Update () {
@@ -42,7 +33,16 @@ public class AudioScript : MonoBehaviour {
 	}
 
 	public void BackPress () {
-		audioMenu.enabled = false;
-		optionsMenu.GetComponent<OptionsScript> ().Init ();
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.AudioMenu, (int)MenuManager.Menus.OptionsMenu, true, false);
+	}
+
+	public void enableButtons() {
+		backButton.enabled = true;
+		backButton.gameObject.GetComponent<Button> ().enabled = true;
+	}
+
+	public void disableButtons() {
+		backButton.enabled = false;
+		backButton.gameObject.GetComponent<Button> ().enabled = false;
 	}
 }

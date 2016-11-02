@@ -3,44 +3,35 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ExitScript : MonoBehaviour {
-	
-	// Current Menu:
-	public Canvas exitMenu;
+	/**
+		Current Menu:
+		exitMenu
 
-	// Super Menus:
-	public Canvas mainMenu;
+		Super Menus:
+		mainMenu
 
-	// Sub Menus:
-	// NONE
+		Sub Menus:
+		NONE
+	**/
 
 	// Interactables:
-	public Button buttonYes;
-	public Button buttonNo;
+	public Text buttonYes;
+	public Text buttonNo;
 
 	public Image screen;
 	public Transform camera;
 
 	void Start () {
-		// Get all menu screens
-		exitMenu = exitMenu.GetComponent<Canvas> ();
-		mainMenu = mainMenu.GetComponent<Canvas> ();
-
 		// Get all interactables
-		buttonYes = buttonYes.GetComponent<Button> ();
-		buttonNo = buttonNo.GetComponent<Button> ();
+		buttonYes = buttonYes.GetComponent<Text> ();
+		buttonNo = buttonNo.GetComponent<Text> ();
 
 		screen = screen.GetComponent<Image> ();
 		camera = camera.GetComponent<Transform> ();
-
-		exitMenu.enabled = false;
-	}
-
-	public void Init () {
-		exitMenu.enabled = true;
 	}
 
 	void Update () {
-		if (exitMenu.enabled && Input.GetMouseButtonDown (0)) {
+		if (MenuManager.exitMenu.GetComponent<Canvas> ().enabled && Input.GetMouseButtonDown (0)) {
 			if (!screen.rectTransform.rect.Contains (Input.mousePosition - camera.position))
 				NoPress ();
 		}
@@ -52,7 +43,20 @@ public class ExitScript : MonoBehaviour {
 	}
 
 	public void NoPress () {
-		exitMenu.enabled = false;
-		mainMenu.GetComponent<MenuScript> ().Init ();
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.ExitMenu, (int)MenuManager.Menus.MainMenu, true, false);
+	}
+
+	public void enableButtons() {
+		buttonYes.enabled = true;
+		buttonNo.enabled = true;
+		buttonYes.gameObject.GetComponent<Button> ().enabled = true;
+		buttonNo.gameObject.GetComponent<Button> ().enabled = true;
+	}
+
+	public void disableButtons() {
+		buttonYes.enabled = false;
+		buttonNo.enabled = false;
+		buttonYes.gameObject.GetComponent<Button> ().enabled = false;
+		buttonNo.gameObject.GetComponent<Button> ().enabled = false;
 	}
 }

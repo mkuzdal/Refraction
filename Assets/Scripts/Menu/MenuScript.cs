@@ -3,55 +3,32 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class MenuScript : MonoBehaviour {
-	
-	// Current Menu:
-	public Canvas mainMenu;
+	/**
+		Current Menu:
+		mainMenu
 
-	// Super Menus:
-	// NONE
+		Super Menus:
+		NONE
 
-	// Sub Menus:
-	public Canvas playMenu;
-	public Canvas optionsMenu;
-	public Canvas creditsMenu;
-	public Canvas exitMenu;
+		Sub Menus:
+		playMenu
+		optionsMenu
+		creditsMenu
+		exitMenu
+	**/
 
 	// Interactables:
-	public Button playButton;
-	public Button optionsButton;
-	public Button creditsButton;
-	public Button exitButton;
+	public Text playButton;
+	public Text optionsButton;
+	public Text creditsButton;
+	public Text exitButton;
 
 	void Start () {
-		// Get all menu screens:
-		mainMenu = mainMenu.GetComponent<Canvas> ();
-
-		playMenu = playMenu.GetComponent<Canvas> ();
-		optionsMenu = optionsMenu.GetComponent<Canvas> ();
-		creditsMenu = creditsMenu.GetComponent<Canvas> ();
-		exitMenu = exitMenu.GetComponent<Canvas> ();
-
 		// Get all interactables:
-		playButton = playButton.GetComponent<Button> ();
-		optionsButton = optionsButton.GetComponent<Button> ();
-		creditsButton = creditsButton.GetComponent<Button> ();
-		exitButton = exitButton.GetComponent<Button> ();
-
-		mainMenu.enabled = true;
-	}
-
-	public void Init () {
-		mainMenu.enabled = true;
-
-		playMenu.enabled = false;
-		optionsMenu.enabled = false;
-		creditsMenu.enabled = false;
-		exitMenu.enabled = false;
-
-		playButton.enabled = true;
-		optionsButton.enabled = true;
-		creditsButton.enabled = true;
-		exitButton.enabled = true;
+		playButton = playButton.GetComponent<Text> ();
+		optionsButton = optionsButton.GetComponent<Text> ();
+		creditsButton = creditsButton.GetComponent<Text> ();
+		exitButton = exitButton.GetComponent<Text> ();
 	}
 
 	void Update() {
@@ -63,23 +40,37 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void OptionsPress() {
-		mainMenu.enabled = false;
-
-		optionsMenu.GetComponent<OptionsScript> ().Init ();
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.MainMenu, (int)MenuManager.Menus.OptionsMenu, false, false);
 	}
 
 	public void CreditsPress() {
-		mainMenu.enabled = false;
-
-		creditsMenu.GetComponent<CreditsScript> ().Init ();
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.MainMenu, (int)MenuManager.Menus.CreditsMenu, false, false);
 	}
 	
 	public void ExitPress() {
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.MainMenu, (int)MenuManager.Menus.ExitMenu, false, true);
+	}
+
+	public void enableButtons() {
+		playButton.enabled = true;
+		optionsButton.enabled = true;
+		creditsButton.enabled = true;
+		exitButton.enabled = true;
+		playButton.gameObject.GetComponent<Button> ().enabled = true;
+		optionsButton.gameObject.GetComponent<Button> ().enabled = true;
+		creditsButton.gameObject.GetComponent<Button> ().enabled = true;
+		exitButton.gameObject.GetComponent<Button> ().enabled = true;
+	}
+
+	public void disableButtons() {
 		playButton.enabled = false;
 		optionsButton.enabled = false;
 		creditsButton.enabled = false;
 		exitButton.enabled = false;
-
-		exitMenu.GetComponent<ExitScript> ().Init ();
+		playButton.gameObject.GetComponent<Button> ().enabled = false;
+		optionsButton.gameObject.GetComponent<Button> ().enabled = false;
+		creditsButton.gameObject.GetComponent<Button> ().enabled = false;
+		exitButton.gameObject.GetComponent<Button> ().enabled = false;
 	}
+
 }

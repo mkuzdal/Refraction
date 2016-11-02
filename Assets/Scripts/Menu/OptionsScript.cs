@@ -3,53 +3,32 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class OptionsScript : MonoBehaviour {
-	
-	// Current Menu:
-	public Canvas optionsMenu;
+	/**
+		Current Menu:
+		optionsMenu
 
-	// Super Menus:
-	public Canvas mainMenu;
+		Super Menus:
+		mainMenu
 
-	// Sub Menus:
-	public Canvas audioMenu;
-	public Canvas graphicsMenu;
-	public Canvas controlsMenu;
+		Sub Menus:
+		audioMenu
+		graphicsMenu
+		controlsMenu 
+	**/
 
 	// Interactables:
-	public Button audioButton;
-	public Button graphicsButton;
-	public Button controlsButton;
-	public Button backButton;
+	public Text audioButton;
+	public Text graphicsButton;
+	public Text controlsButton;
+	public Text backButton;
 
 	void Start () {
-		
-		// Get all menu screens
-		optionsMenu = optionsMenu.GetComponent<Canvas> ();
-		mainMenu = mainMenu.GetComponent<Canvas> ();
-		audioMenu = audioMenu.GetComponent<Canvas> ();
-		graphicsMenu = graphicsMenu.GetComponent<Canvas> ();
-		controlsMenu = controlsMenu.GetComponent<Canvas> ();
-
 		// Get all interactables
-		audioButton = audioButton.GetComponent<Button> ();
-		graphicsButton = graphicsButton.GetComponent<Button> ();
-		controlsButton = controlsButton.GetComponent<Button> ();
-		backButton = backButton.GetComponent<Button> ();
+		audioButton = audioButton.GetComponent<Text> ();
+		graphicsButton = graphicsButton.GetComponent<Text> ();
+		controlsButton = controlsButton.GetComponent<Text> ();
+		backButton = backButton.GetComponent<Text> ();
 
-		optionsMenu.enabled = false;
-	}
-
-	public void Init () {
-		optionsMenu.enabled = true;
-
-		audioMenu.enabled = false;
-		graphicsMenu.enabled = false;
-		controlsMenu.enabled = false;
-
-		audioButton.enabled = true;
-		graphicsButton.enabled = true;
-		controlsButton.enabled = true;
-		backButton.enabled = true;
 	}
 
 	void Update () {
@@ -57,34 +36,41 @@ public class OptionsScript : MonoBehaviour {
 	}
 
 	public void AudioPress() {
-		audioButton.enabled = false;
-		graphicsButton.enabled = false;
-		controlsButton.enabled = false;
-		backButton.enabled = false;
-
-		audioMenu.GetComponent<AudioScript> ().Init ();
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.AudioMenu, false, true);
 	}
 
 	public void GraphicsPress() {
-		audioButton.enabled = false;
-		graphicsButton.enabled = false;
-		controlsButton.enabled = false;
-		backButton.enabled = false;
-
-		graphicsMenu.GetComponent<GraphicsScript> ().Init ();
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.GraphicsMenu, false, true);
 	}
 
 	public void ControlsPress() {
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.ControlsMenu, false, true);
+	}
+
+	public void BackPress () {
+		MenuManager.ChangeMenu ((int)MenuManager.Menus.OptionsMenu, (int)MenuManager.Menus.MainMenu, false, false);
+	}
+
+	public void enableButtons() {
+		audioButton.enabled = true;
+		graphicsButton.enabled = true;
+		controlsButton.enabled = true;
+		backButton.enabled = true;
+		audioButton.gameObject.GetComponent<Button> ().enabled = true;
+		graphicsButton.gameObject.GetComponent<Button> ().enabled = true;
+		controlsButton.gameObject.GetComponent<Button> ().enabled = true;
+		backButton.gameObject.GetComponent<Button> ().enabled = true;
+	}
+
+	public void disableButtons() {
 		audioButton.enabled = false;
 		graphicsButton.enabled = false;
 		controlsButton.enabled = false;
 		backButton.enabled = false;
-
-		controlsMenu.GetComponent<ControlsScript> ().Init ();
+		audioButton.gameObject.GetComponent<Button> ().enabled = false;
+		graphicsButton.gameObject.GetComponent<Button> ().enabled = false;
+		controlsButton.gameObject.GetComponent<Button> ().enabled = false;
+		backButton.gameObject.GetComponent<Button> ().enabled = false;
 	}
 
-	public void BackPress () {
-		optionsMenu.enabled = false;
-		mainMenu.GetComponent<MenuScript> ().Init ();
-	}
 }
