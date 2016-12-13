@@ -35,8 +35,6 @@ public class CameraScript : MonoBehaviour {
 			Debug.Log ("CAMERA LEFT");
 		}
 
-		Debug.Log (camera.rotation.eulerAngles);
-
 		float yNew = camera.position.y - zoomSensitivity * Input.GetAxis ("Mouse ScrollWheel")* Mathf.Sin (camera.rotation.eulerAngles.x * 2 * Mathf.PI / 360);
 		float zNew = camera.position.z - zoomSensitivity * Input.GetAxis ("Mouse ScrollWheel")* Mathf.Cos (camera.rotation.eulerAngles.x * 2 * Mathf.PI / 360);
 

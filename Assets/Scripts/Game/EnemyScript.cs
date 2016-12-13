@@ -13,7 +13,8 @@ public class EnemyScript : MonoBehaviour {
 
 
 	void Start () {
-		path = GameObject.Find ("Path");
+		
+		path = GameObject.Find ("Path1");
 	}
 	
 	void Update () {
@@ -37,6 +38,7 @@ public class EnemyScript : MonoBehaviour {
 			targetPathNode = null;
 		} else {
 			// Move towards the node
+			Debug.Log (targetPathNode.position);
 			transform.Translate (direction.normalized * distThisFrame, Space.World);
 			Quaternion targetRotation = Quaternion.LookRotation (direction);
 			this.transform.rotation = Quaternion.Lerp (this.transform.rotation, targetRotation, 2*Time.deltaTime);
